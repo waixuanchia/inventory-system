@@ -7,6 +7,7 @@ import com.example.inverntory_management_system.repository.RoleRepository;
 import com.example.inverntory_management_system.repository.UserRepository;
 import com.example.inverntory_management_system.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -17,10 +18,13 @@ public class UserServiceImpl implements UserService {
 private UserRepository userRepository;
 private RoleRepository roleRepository;
 
+private PasswordEncoder passwordEncoder;
+
 @Autowired
-  public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
+  public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository,PasswordEncoder passwordEncoder) {
     this.userRepository = userRepository;
     this.roleRepository = roleRepository;
+    this.passwordEncoder = passwordEncoder;
   }
 
   @Override
