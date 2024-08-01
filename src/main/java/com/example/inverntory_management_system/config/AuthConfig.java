@@ -31,12 +31,18 @@ public class AuthConfig {
       csrf((c) -> c.disable())
       .authorizeHttpRequests((auth) ->
         auth
-          .requestMatchers("/auth/login","/auth/register","/assets/**").permitAll()
+          .requestMatchers("/auth/login","/auth/register","/auth/saveUser","/assets/**").permitAll()
           .anyRequest().authenticated()).
       formLogin((form) ->
         form
           .loginPage("/auth/login")
           .defaultSuccessUrl("/")
+          .successHandler((handler,response,auth)
+            -> {
+
+            response.sendRedirect("/?auth=success");
+          }
+          )
           .failureUrl("/auth/login?error=true")
           .permitAll())
       .logout((logout) ->

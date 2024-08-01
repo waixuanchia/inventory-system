@@ -30,7 +30,7 @@ public class UserAuthProvider implements AuthenticationProvider {
     String email = authentication.getName();
     String password = authentication.getCredentials().toString();
     UserEntity user = userService.findByEmail(email);
-    if(user != null && user.getPassword().equals(password)){
+    if(user != null && passwordEncoder.matches(password,user.getPassword())){
       return new UsernamePasswordAuthenticationToken(user.getUsername(),password, getGrantedAuthorities(user.getRoles().get(0)));
     }
 

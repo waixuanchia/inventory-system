@@ -33,7 +33,7 @@
           <div class="mb-3">
             <a href="index.html" class="auth-logo">
               <img th:src="@{/assets/images/logo-dark.png}" height="30" class="logo-dark mx-auto" alt="">
-              <img th:src="@{/assets/images/logo-light.png}" he="logo-light mx-auto" alt="">
+
             </a>
           </div>
         </div>
@@ -96,26 +96,20 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 <script>
-<!--  @if(Session::has('message'))-->
-<!--  var type = "{{ Session::get('alert-type','info') }}"-->
-<!--  switch(type){-->
-<!--     case 'info':-->
-<!--     toastr.info(" {{ Session::get('message') }} ");-->
-<!--     break;-->
 
-<!--     case 'success':-->
-<!--     toastr.success(" {{ Session::get('message') }} ");-->
-<!--     break;-->
+  var loginError = '[[${param.error}]]';
+  var logout = '[[${param.logout}]]';
 
-<!--     case 'warning':-->
-<!--     toastr.warning(" {{ Session::get('message') }} ");-->
-<!--     break;-->
+  if(loginError != undefined && loginError != ''){
 
-<!--     case 'error':-->
-<!--     toastr.error(" {{ Session::get('message') }} ");-->
-<!--     break;-->
-<!--  }-->
-<!--  @endif-->
+    toastr.error("There are errors with the email or password");
+  }
+
+  if(logout != undefined && logout != ''){
+
+    toastr.success("You are logout");
+  }
+
 </script>
 
 </body>

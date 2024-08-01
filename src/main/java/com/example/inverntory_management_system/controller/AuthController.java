@@ -28,7 +28,7 @@ public class AuthController {
   }
 
   @RequestMapping(value="/login",method={RequestMethod.GET, RequestMethod.POST})
-  public String login(){
+  public String login(Model model){
     return "auth/login";
   }
 
@@ -46,12 +46,13 @@ public class AuthController {
                                RedirectAttributes redirectAttributes){
     UserEntity existingUser = userService.findByEmail(user.getEmail());
     if(existingUser != null && existingUser.getEmail() != null && !existingUser.getEmail().isEmpty()){
-      binding.rejectValue("email","email provided already exists");
+      binding.rejectValue("email","","email provided already exists");
+
     }
 
     existingUser = userService.findByUsername(user.getUsername());
     if(existingUser != null && existingUser.getUsername() != null && !existingUser.getUsername().isEmpty()){
-      binding.rejectValue("username","username provided already exists");
+      binding.rejectValue("username","","username provided already exists");
     }
 
     if(binding.hasErrors()){
@@ -63,8 +64,6 @@ public class AuthController {
       userService.saveUser(user);
       return "redirect:/auth/register";
     }
-
-
   }
 
   @RequestMapping(value = "/logout", method = RequestMethod.GET)

@@ -32,7 +32,7 @@ private PasswordEncoder passwordEncoder;
     UserEntity user = new UserEntity();
     user.setUsername(registerDto.getUsername());
     user.setEmail(registerDto.getEmail());
-    user.setPassword(registerDto.getPassword());
+    user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
     Role role = roleRepository.findByName("USER");
     user.setRoles(Arrays.asList(role));
     userRepository.save(user);

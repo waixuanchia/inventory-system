@@ -47,14 +47,18 @@
                 <div class="col-12">
                   <input class="form-control" id="username" type="text" name="username" required="" placeholder="UserName" th:field="*{username}">
                 </div>
-                <p th:if="${#fields.hasErrors('username')}" class="text-danger"></p>
+                <ul th:if="${#fields.hasErrors('username')}" class="text-danger">
+                  <li th:text="${#fields.errors('username')}"></li>
+                </ul>
               </div>
 
               <div class="form-group mb-3 row">
                 <div class="col-12">
                   <input class="form-control" id="email" type="email" name="email" required="" placeholder="Email" th:field="*{email}">
                 </div>
-                <p th:if="${#fields.hasErrors('email')}" class="text-danger"></p>
+                <ul th:if="${#fields.hasErrors('email')}"  class="text-danger">
+                  <li th:text="${#fields.errors('email')}"></li>
+                </ul>
               </div>
               <div class="form-group mb-3 row">
                 <div class="col-12">
@@ -96,13 +100,13 @@
 
 
   <!-- JAVASCRIPT -->
-  <script src="{{ asset('backend/assets/libs/jquery/jquery.min.js') }}"></script>
-  <script src="{{ asset('backend/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ asset('backend/assets/libs/metismenu/metisMenu.min.js') }}"></script>
-  <script src="{{ asset('backend/assets/libs/simplebar/simplebar.min.js') }}"></script>
-  <script src="{{ asset('backend/assets/libs/node-waves/waves.min.js') }}"></script>
+  <script th:src="@{/assets/libs/jquery/jquery.min.js}"></script>
+  <script th:src="@{/assets/libs/bootstrap/js/bootstrap.bundle.min.js}"></script>
+  <script th:src="@{/assets/libs/metismenu/metisMenu.min.js}"></script>
+  <script th:src="@{/assets/libs/simplebar/simplebar.min.js}"></script>
+  <script th:src="@{/assets/libs/node-waves/waves.min.js}"></script>
 
-  <script src="{{ asset('backend/assets/js/app.js') }}"></script>
+  <script th:src="@{/assets/js/app.js}"></script>
 </div>
 </body>
 </html>
