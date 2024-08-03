@@ -23,13 +23,17 @@
         <div class="card">
           <div class="card-body">
 
-            <h4 class="card-title">Add supplier Page </h4><br><br>
+            <h4 class="card-title">Edit customer Page </h4><br><br>
 
 
-            <form method="post" th:action="@{/customers/add-customer}" id="add-customer" th:object="${customer}"
-            enctype="multipart/form-data">
+            <form method="post" th:action="@{/customers/edit-customer/{id}(id=${customer.id})}" id="add-customer" th:object="${customer}"
+                  enctype="multipart/form-data"
+            >
 
+              <div class="d-none">
+                <input name="id" class="form-control hidden" type="text" th:field="*{id}">
 
+              </div>
               <div class="row mb-3">
                 <label for="example-text-input" class="col-sm-2 col-form-label">Customer name</label>
                 <div class="form-group col-sm-10">
@@ -67,7 +71,7 @@
                 <label for="example-text-input" class="col-sm-2 col-form-label">Customer Image </label>
                 <div class="form-group col-sm-10">
                   <input name="customerImage" class="form-control" type="file"  id="image">
-
+                  <input class="d-none form-control" type="text" th:field="*{customer_image}" >
                 </div>
               </div>
               <!-- end row -->
@@ -75,25 +79,25 @@
               <div class="row mb-3">
                 <label for="example-text-input" class="col-sm-2 col-form-label">  </label>
                 <div class="form-group col-sm-10">
-                  <img id="showImage" class="rounded avatar-lg" th:src="@{/assets/upload/no_image.jpg}" alt="Card image cap">
+                  <img th:if="!${customer.customer_image}" id="showImage" class="rounded avatar-lg" th:src="@{/assets/upload/no_image.jpg}" alt="Card image cap">
+                  <img th:if="${customer.customer_image}" id="showImage" class="rounded avatar-lg" th:src="@{/assets/upload/{image}(image=${customer.customer_image})}" alt="Card image cap">
                 </div>
               </div>
 
-              <input type="submit" class="btn btn-info waves-effect waves-light" value="add customer">
+              <input type="submit" class="btn btn-info waves-effect waves-light" value="edit customer">
             </form>
-
-
 
           </div>
         </div>
       </div> <!-- end col -->
     </div>
-
-
-
   </div>
 
   <script type="text/javascript">
+
+    //toastr.error("There are errors with the email or password");
+    //toastr.success("You are logout");
+
     $(document).ready(function (){
         $('#add-supplier').validate({
             rules: {
@@ -109,9 +113,6 @@
                 address: {
                     required : true,
                 },
-                customer_image:{
-                    required: true,
-                }
             },
             messages :{
                 name: {
@@ -126,9 +127,6 @@
                 address: {
                     required : 'Please Enter Your Address',
                 },
-                customer_image:{
-                    required: 'Please select an image'
-                }
             },
             errorElement : 'span',
             errorPlacement: function (error,element) {
