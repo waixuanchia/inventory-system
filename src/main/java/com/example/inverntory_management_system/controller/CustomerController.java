@@ -18,9 +18,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
@@ -116,6 +118,28 @@ public class CustomerController {
       redirectAttributes.addFlashAttribute("error",true);
       return "redirect:" + String.format("/customers/edit-customer/%d",customerId);
     }
+  }
+
+  @GetMapping("/delete-customer/{customerId}")
+  public RedirectView deleteCustomer(@PathVariable("customerId") Long customerId,
+                                     RedirectAttributes redirectAttributes){
+    Optional<Customer> customerOptional = this.customerService.findById(customerId);
+    customerOptional.ifPresentOrElse((customer) -> {
+      String customerImage = customer.getCustomer_image();
+      try {
+        Files.delete(Paths.get(upload_dir + customerImage));
+        this.customerService.deleteCustomer(customer);
+        redirectAttributes.addFlashAttribute("toastAlert","success");
+        redirectAttributes.addFlashAttribute("toastMessage","Successfully deleted customer");
+
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
+    }, () -> {
+      redirectAttributes.addFlashAttribute("toastAlert","error");
+      redirectAttributes.addFlashAttribute("toastMessage","Customer not found");
+    });
+    return new RedirectView("/customers");
   }
 
 }

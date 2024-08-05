@@ -64,7 +64,7 @@
                 <td th:text="${customer.address}"></td>
                 <td>
                   <a th:href="@{/customers/edit-customer/{id}(id=${customer.id})}" class="btn btn-info sm" title="Edit Data">  <i class="fas fa-edit"></i> </a>
-<!--                  <a th:href="@{/customer/delete-supplier/{id}(id=${supplier.id})}" class="btn btn-danger sm" title="Delete Data" id="delete">  <i class="fas fa-trash-alt"></i> </a>-->
+                  <a th:href="@{/customers/delete-customer/{id}(id=${customer.id})}" class="btn btn-danger sm" title="Delete Data" id="delete">  <i class="fas fa-trash-alt"></i> </a>
 
                 </td>
               </tr>
@@ -77,7 +77,23 @@
     </div> <!-- end row -->
 
   </div> <!-- container-fluid -->
+  <script type="text/javascript">
+
+    var alertType = '[[${toastAlert}]]';
+    var alertMessage = '[[${toastMessage}]]';
+    if(alertType != undefined && alertType != ''){
+      if(alertType == 'success'){
+        toastr.success(alertMessage);
+      }
+      else if(alertType == 'error'){
+        toastr.error(alertMessage);
+      }
+    }
+
+  </script>
 </div>
+
+
 
 
 

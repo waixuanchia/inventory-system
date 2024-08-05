@@ -50,5 +50,10 @@ public class CustomerServiceImpl implements CustomerService {
     return outputFilename;
   }
 
+  @Override
+  public void deleteCustomer(Customer customer) {
+    this.customerRepository.delete(customer);
+  }
+
 
 }

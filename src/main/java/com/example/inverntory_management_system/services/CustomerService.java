@@ -15,4 +15,6 @@ public interface CustomerService {
   public Optional<Customer> findById(Long id);
 
   public String resizeImage(String upload_dir,MultipartFile image) throws IOException;
+
+  public void deleteCustomer(Customer customer);
 }
