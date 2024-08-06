@@ -1,0 +1,78 @@
+
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}"
+
+>
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+<div layout:fragment="content" class="page-content">
+  <div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+      <div class="col-12">
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+          <h4 class="mb-sm-0">Supplier All</h4>
+
+
+
+        </div>
+      </div>
+    </div>
+    <!-- end page title -->
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+
+            <div class="d-flex justify-content-end">
+
+              <a th:href="@{/suppliers/add-supplier}" class="position-relative btn btn-dark btn-rounded waves-effect waves-light">add supplier</a>
+            </div>
+            <h4 class="card-title">Supplier All Data </h4>
+
+
+            <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+              <thead>
+              <tr>
+                <th>Sl</th>
+                <th>name</th>
+                <th>Action</th>
+
+              </thead>
+
+              <tbody>
+
+              <tr th:each="unit : ${units}">
+                <td th:text="${unit.id}"></td>
+                <td th:text="${unit.name}"></td>
+
+                <td>
+                  <a th:href="@{/units/edit-unit/{id}(id=${unit.id})}" class="btn btn-info sm" title="Edit Data">  <i class="fas fa-edit"></i> </a>
+                  <a th:href="@{/units/delete-unit/{id}(id=${unit.id})}" class="btn btn-danger sm" title="Delete Data" id="delete">  <i class="fas fa-trash-alt"></i> </a>
+
+                </td>
+              </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div> <!-- end col -->
+    </div> <!-- end row -->
+
+  </div> <!-- container-fluid -->
+</div>
+
+
+
+</body>
+</html>
