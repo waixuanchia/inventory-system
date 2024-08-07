@@ -28,8 +28,13 @@
 
             <form method="post" th:action="@{/units/edit-unit/{id}(id=${unit.id})}" id="add-unit" th:object="${unit}"
             >
+              <div class="row mb-3">
 
+                <div class="d-none form-group col-sm-10">
+                  <input name="id" class="form-control hidden" type="text" th:field="*{id}" >
 
+                </div>
+              </div>
               <div class="row mb-3">
                 <label for="example-text-input" class="col-sm-2 col-form-label">Unit name</label>
                 <div class="form-group col-sm-10">
@@ -42,7 +47,7 @@
               </div>
               <!-- end row -->
 
-              <input type="submit" class="btn btn-info waves-effect waves-light" value="add unit">
+              <input type="submit" class="btn btn-info waves-effect waves-light" value="edit unit">
             </form>
           </div>
         </div>

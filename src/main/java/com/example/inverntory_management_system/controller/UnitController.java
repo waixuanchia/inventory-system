@@ -74,4 +74,27 @@ public class UnitController {
 
   }
 
+  @PostMapping("/edit-unit/{unitId}")
+  public String editUnit(@Valid @ModelAttribute("unit") UnitDto unitDto,
+                         BindingResult bindingResult,
+                         @PathVariable("unitId") Long unitId,
+                         RedirectAttributes redirectAttributes,
+                         Model model){
+
+    if(bindingResult.hasErrors()){
+      model.addAttribute("alertType","error");
+      model.addAttribute("alertMessage","There are errors in the form");
+      model.addAttribute("unit",unitDto);
+      return "unit/editUnit";
+    }
+    else{
+      Unit unit = UnitMapper.mapToUnit(unitDto);
+      this.unitService.saveUnit(unit);
+      redirectAttributes.addFlashAttribute("alertType","success");
+      redirectAttributes.addFlashAttribute("alertMessage","unit save success");
+      return "redirect:/units/edit-unit/" + unitId;
+    }
+
+  }
+
 }
