@@ -70,6 +70,23 @@
     </div> <!-- end row -->
 
   </div> <!-- container-fluid -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <script>
+
+    var formAlert = '[[${alertType}]]';
+
+
+    if(formAlert != undefined && formAlert == 'error'){
+
+      toastr.error('[[${alertMessage}]]');
+    }
+
+    if(formAlert != undefined && formAlert == 'success'){
+
+      toastr.success('[[${alertMessage}]]');
+    }
+
+  </script>
 </div>
 
 

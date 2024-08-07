@@ -11,4 +11,6 @@ public interface UnitService {
   public Unit saveUnit(Unit unit);
 
   public Optional<Unit> findById(Long id);
+
+  public void deleteUnit(Unit unit);
 }

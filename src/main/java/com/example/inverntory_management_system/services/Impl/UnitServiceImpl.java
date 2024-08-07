@@ -29,4 +29,9 @@ public class UnitServiceImpl implements UnitService {
   public Optional<Unit> findById(Long id) {
     return this.unitRepository.findById(id);
   }
+
+  @Override
+  public void deleteUnit(Unit unit) {
+    this.unitRepository.delete(unit);
+  }
 }
