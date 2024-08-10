@@ -23,15 +23,15 @@
         <div class="card">
           <div class="card-body">
 
-            <h4 class="card-title">Add supplier Page </h4><br><br>
+            <h4 class="card-title">Add category Page </h4><br><br>
 
 
-            <form method="post" th:action="@{/units/add-unit}" id="add-unit" th:object="${unit}"
+            <form method="post" th:action="@{/category/add-category}" id="add-category" th:object="${category}"
             >
 
 
               <div class="row mb-3">
-                <label for="example-text-input" class="col-sm-2 col-form-label">Unit name</label>
+                <label for="example-text-input" class="col-sm-2 col-form-label">Category name</label>
                 <div class="form-group col-sm-10">
                   <input name="name" class="form-control" type="text" th:field="*{name}" >
 <!--                  <span th:if="${#fields.hasError('name')}" th:error="*{name}"></span>-->
@@ -42,7 +42,7 @@
               </div>
               <!-- end row -->
 
-              <input type="submit" class="btn btn-info waves-effect waves-light" value="add unit">
+              <input type="submit" class="btn btn-info waves-effect waves-light" value="add category">
             </form>
           </div>
         </div>

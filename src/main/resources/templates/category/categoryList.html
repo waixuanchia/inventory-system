@@ -32,7 +32,7 @@
 
             <div class="d-flex justify-content-end">
 
-              <a th:href="@{/units/add-unit}" class="position-relative btn btn-dark btn-rounded waves-effect waves-light">add unit</a>
+              <a th:href="@{/category/add-category}" class="position-relative btn btn-dark btn-rounded waves-effect waves-light">add unit</a>
             </div>
             <h4 class="card-title">Category All Data </h4>
 
@@ -53,8 +53,8 @@
                 <td th:text="${category.name}"></td>
 
                 <td>
-                  <a th:href="@{/units/edit-unit/{id}(id=${unit.id})}" class="btn btn-info sm" title="Edit Data">  <i class="fas fa-edit"></i> </a>
-                  <a th:href="@{/units/delete-unit/{id}(id=${unit.id})}" class="btn btn-danger sm" title="Delete Data" id="delete">  <i class="fas fa-trash-alt"></i> </a>
+                  <a th:href="@{/category/edit-category/{id}(id=${category.id})}" class="btn btn-info sm" title="Edit Data">  <i class="fas fa-edit"></i> </a>
+                  <a th:href="@{/category/delete-category/{id}(id=${category.id})}" class="btn btn-danger sm" title="Delete Data" id="delete">  <i class="fas fa-trash-alt"></i> </a>
 
                 </td>
               </tr>
