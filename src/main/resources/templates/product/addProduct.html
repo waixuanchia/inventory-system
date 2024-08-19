@@ -50,9 +50,9 @@
                     <option th:each="supplier : ${suppliers}" th:value="${supplier.id}" th:text="${supplier.name}"></option>
                   </select>
 
-<!--                  <ul th:if="${#fields.hasErrors('name')}" >-->
-<!--                    <li class="text-danger" th:each="message : ${#fields.errors('name')}" th:text="${message}"></li>-->
-<!--                  </ul>-->
+                  <ul th:if="${#fields.hasErrors('supplier')}" >
+                    <li class="text-danger" th:each="message : ${#fields.errors('supplier')}" th:text="${message}"></li>
+                  </ul>
                 </div>
               </div>
               <!-- end row -->
@@ -65,9 +65,9 @@
                     <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
                   </select>
 
-<!--                  <ul th:if="${#fields.hasErrors('name')}" >-->
-<!--                    <li class="text-danger" th:each="message : ${#fields.errors('name')}" th:text="${message}"></li>-->
-<!--                  </ul>-->
+                  <ul th:if="${#fields.hasErrors('category')}" >
+                    <li class="text-danger" th:each="message : ${#fields.errors('category')}" th:text="${message}"></li>
+                  </ul>
                 </div>
               </div>
               <!-- end row -->
@@ -75,19 +75,21 @@
               <div class="row mb-3">
                 <label for="example-text-input" class="col-sm-2 col-form-label">Unit</label>
                 <div class="form-group col-sm-10">
+
                   <select class="form-select" type="text" th:field="*{unit.id}" >
+
                     <option value="">Select unit</option>
-                    <option th:each="unit : ${units}" th:value="${unit.id}" th:text="${unit.name}"></option>
+                    <option th:each="unit : ${units}" th:value="${unit.id}" th:text="${unit.name}" th:selected="${product.unit != null && unit.id == product.unit.id}"></option>
                   </select>
 
-<!--                  <ul th:if="${#fields.hasErrors('name')}" >-->
-<!--                    <li class="text-danger" th:each="message : ${#fields.errors('name')}" th:text="${message}"></li>-->
-<!--                  </ul>-->
+                  <ul th:if="${#fields.hasErrors('unit')}" >
+                    <li class="text-danger" th:each="message : ${#fields.errors('unit')}" th:text="${message}"></li>
+                  </ul>
                 </div>
               </div>
               <!-- end row -->
 
-              <input type="submit" class="btn btn-info waves-effect waves-light" value="add unit">
+              <input type="submit" class="btn btn-info waves-effect waves-light" value="add product">
             </form>
           </div>
         </div>

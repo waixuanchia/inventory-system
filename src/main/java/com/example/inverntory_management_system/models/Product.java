@@ -26,7 +26,7 @@ public class Product {
 
   private String name;
 
-  @OneToOne(cascade = CascadeType.MERGE)
+  @OneToOne(cascade = CascadeType.MERGE,fetch=FetchType.LAZY)
   @JoinColumn(name="supplier_id",referencedColumnName="id")
   private Supplier supplier;
 

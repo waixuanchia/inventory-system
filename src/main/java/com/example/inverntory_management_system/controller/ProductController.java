@@ -68,6 +68,12 @@ public class ProductController {
     if(bindingResult.hasErrors()){
       model.addAttribute("alertType","error");
       model.addAttribute("alertMessage","There are errors within the form");
+      List<Supplier> suppliers = this.supplierService.listSupplier();
+      List<Category> categories = this.categoryService.listCategories();
+      List<Unit> units = this.unitService.listUnits();
+      model.addAttribute("suppliers",suppliers);
+      model.addAttribute("categories",categories);
+      model.addAttribute("units",units);
       return "product/addProduct";
     }
     else{
@@ -77,5 +83,18 @@ public class ProductController {
       redirectAttributes.addFlashAttribute("alertMessage","product save success");
       return "redirect:/product/add-product";
     }
+  }
+
+  @GetMapping("/edit-product/{productId}")
+  public String editProduct(Model model){
+    ProductDto product = new ProductDto();
+    List<Supplier> suppliers = this.supplierService.listSupplier();
+    List<Category> categories = this.categoryService.listCategories();
+    List<Unit> units = this.unitService.listUnits();
+    model.addAttribute("product",product);
+    model.addAttribute("suppliers",suppliers);
+    model.addAttribute("categories",categories);
+    model.addAttribute("units",units);
+    return "product/addProduct";
   }
 }
