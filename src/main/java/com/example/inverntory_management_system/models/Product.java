@@ -26,15 +26,15 @@ public class Product {
 
   private String name;
 
-  @OneToOne(cascade = CascadeType.MERGE,fetch=FetchType.LAZY)
+  @ManyToOne(cascade = CascadeType.MERGE)
   @JoinColumn(name="supplier_id",referencedColumnName="id")
   private Supplier supplier;
 
-  @OneToOne(cascade=CascadeType.MERGE)
+  @ManyToOne(cascade=CascadeType.MERGE)
   @JoinColumn(name="unit_id",referencedColumnName="id")
   private Unit unit;
 
-  @OneToOne(cascade=CascadeType.MERGE)
+  @ManyToOne(cascade=CascadeType.MERGE)
   @JoinColumn(name="category_id",referencedColumnName="id")
   private Category category;
 
